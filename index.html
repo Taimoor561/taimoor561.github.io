@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taimur Afzal - Portfolio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Vue.js CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    /* White Background with Space Elements */
+    body {
+      background: #ffffff;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      color: #1a202c;
+    }
+    /* Nebula Overlay (subtle on white) */
+    .nebula {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.05)), 
+                  radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.1), transparent);
+      opacity: 0.3;
+      z-index: -1;
+    }
+    /* Starry Sky Animation (subtle on white) */
+    @keyframes twinkling {
+      0% { opacity: 0.2; }
+      50% { opacity: 0.7; }
+      100% { opacity: 0.2; }
+    }
+    .star {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      animation: twinkling 4s infinite;
+    }
+    /* Planet Orbit Animation */
+    @keyframes orbit {
+      0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+    }
+    .planet {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #f97316, #7c2d12);
+      border-radius: 50%;
+      animation: orbit 20s linear infinite;
+      top: 50%;
+      left: 50%;
+      z-index: -1;
+    }
+    /* Card Styles */
+    .card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.9));
+      border-radius: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15), 0 0 30px rgba(0, 0, 0, 0.1);
+    }
+    /* Navigation */
+    nav {
+      background: linear-gradient(90deg, #1e3a8a, #3b82f6); /* Sapphire blue gradient */
+      box-shadow: 0 4px 20px rgba(30, 58, 138, 0.2);
+    }
+    nav a:hover {
+      background: rgba(255, 215, 0, 0.3); /* Gold hover */
+      color: #ffd700; /* Gold */
+    }
+    /* Project Card Hover */
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(30, 58, 138, 0.2);
+    }
+    /* Tech Badge Animation */
+    .tech-badge {
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .tech-badge:hover {
+      transform: scale(1.1);
+      background: rgba(255, 215, 0, 0.3); /* Gold hover */
+      color: #ffd700; /* Gold */
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #3b82f6, #34d399); /* Sapphire to emerald */
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to bottom, #1e40af, #047857); /* Darker sapphire to dark emerald */
+    }
+    /* Section-specific Gradients */
+    #home .card { background: linear-gradient(135deg, #e6f0fa, #d1e5fc); } /* Light blue */
+    #about .card { background: linear-gradient(135deg, #e6f4f1, #c1e7dd); } /* Light emerald */
+    #projects .card { background: linear-gradient(135deg, #e6f0f4, #cce7f0); } /* Light cyan */
+    #skills .card { background: linear-gradient(135deg, #f3e8ff, #e0c1f4); } /* Light purple */
+    #contact .card { background: linear-gradient(135deg, #fef4e6, #fce8c3); } /* Light amber */
+  </style>
+</head>
+<body class="font-sans">
+  <div id="app" class="flex flex-col min-h-screen">
+    <!-- Navigation -->
+    <nav class="shadow-md sticky top-0 z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-bold text-white">{{ name }}</h1>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a v-for="section in sections" :href="'#' + section.toLowerCase()" 
+               class="text-white hover:text-yellow-300 px-3 py-2 rounded-md text-sm font-medium transition duration-300"
+               :class="{ 'text-yellow-300 font-semibold': currentSection === section.toLowerCase() }">
+              {{ section }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative py-20">
+      <div class="nebula"></div>
+      <div class="planet"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="card p-8 max-w-3xl mx-auto">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Hi, I'm {{ name }}</h2>
+          <p class="text-xl md:text-2xl text-gray-700 mb-6">{{ profession }}</p>
+          <a href="#contact" class="inline-block bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-yellow-700 transition duration-300">Get in Touch</a>
+        </div>
+      </div>
+      <!-- Starry Background -->
+      <div class="absolute inset-0 z-0">
+        <div v-for="i in 150" :key="i" class="star" :style="{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%`, width: `${Math.random() * 3 + 1}px`, height: `${Math.random() * 3 + 1}px`, animationDelay: `${Math.random() * 5}s` }"></div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">About Me</h2>
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <img src="https://via.placeholder.com/300" alt="Profile" class="w-64 h-64 rounded-full object-cover shadow-lg">
+          <div class="card p-6 max-w-prose">
+            <p class="text-lg text-gray-700 leading-relaxed">{{ about }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">My Projects</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div v-for="project in projects" class="project-card bg-white bg-opacity-10 rounded-lg overflow-hidden">
+            <img :src="project.image" :alt="project.title" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ project.title }}</h3>
+              <p class="text-gray-600 mb-4">{{ project.description }}</p>
+              <a :href="project.link" target="_blank" class="text-yellow-600 hover:text-yellow-500">View Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">My Skills</h2>
+        <div class="card p-6">
+          <div class="flex flex-wrap justify-center gap-4">
+            <span v-for="skill in skills" class="tech-badge bg-purple-100 text-purple-800 text-sm font-semibold px-4 py-2 rounded-full shadow-lg">{{ skill }}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Contact Me</h2>
+        <div class="max-w-lg mx-auto">
+          <div class="card p-6">
+            <div class="mb-4">
+              <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
+              <input v-model="form.name" type="text" id="name" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:ring-yellow-500 focus:border-yellow-500 bg-white text-gray-900">
+            </div>
+            <div class="mb-4">
+              <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+              <input v-model="form.email" type="email" id="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:ring-yellow-500 focus:border-yellow-500 bg-white text-gray-900">
+            </div>
+            <div class="mb-4">
+              <label for="message" class="block text-sm font-medium text-gray-600">Message</label>
+              <textarea v-model="form.message" id="message" rows="4" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:ring-yellow-500 focus:border-yellow-500 bg-white text-gray-900"></textarea>
+            </div>
+            <button @click="submitForm" class="w-full bg-yellow-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-yellow-700 transition duration-300">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-900 to-teal-900 text-white py-6">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p>© {{ new Date().getFullYear() }} {{ name }}. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          name: 'Taimur Afzal',
+          profession: 'Computer Engineer & Innovator',
+          about: 'Passionate Computer Engineer with a proven track record of optimizing network and IT operations, achieving 99.9% system uptime. Skilled in leveraging Python, Bash, and Flutter to automate processes, reducing operational overhead by 30%. Adept at deploying AI-driven solutions and robust security frameworks, ensuring 100% compliance with organizational standards. Seeking to drive innovation in a dynamic environment through cutting-edge technology solutions.',
+          sections: ['Home', 'About', 'Projects', 'Skills', 'Contact'],
+          currentSection: 'home',
+          projects: [
+            {
+              title: 'Smart Vehicle Access and Control System',
+              description: 'Engineered a mobile app with Firebase, achieving 100% secure data storage and 98% accuracy in facial recognition.',
+              image: 'https://via.placeholder.com/400x300',
+              link: 'https://github.com/TaimurAfzal'
+            },
+            {
+              title: 'IoT-based Anti-Theft System',
+              description: 'Developed an AI-driven security system on Raspberry Pi with 95%+ accuracy in real-time facial recognition.',
+              image: 'https://via.placeholder.com/400x300',
+              link: 'https://github.com/TaimurAfzal'
+            },
+            {
+              title: 'Digital Twin-based School Management System',
+              description: 'Built a Flutter-based Android app with RESTful APIs, enabling seamless communication with 100% uptime.',
+              image: 'https://via.placeholder.com/400x300',
+              link: '#'
+            }
+          ],
+          skills: ['Dart', 'Python', 'JavaScript', 'Vue.js', 'Tailwind CSS', 'Flutter', 'Firebase', 'Raspberry Pi', 'Cisco', 'AI/ML'],
+          form: {
+            name: '',
+            email: '',
+            message: ''
+          }
+        };
+      },
+      methods: {
+        submitForm() {
+          alert('Form submitted!\nName: ' + this.form.name + '\nEmail: ' + this.form.email + '\nMessage: ' + this.form.message);
+          this.form.name = '';
+          this.form.email = '';
+          this.form.message = '';
+        },
+        updateCurrentSection() {
+          const sections = this.sections.map(s => s.toLowerCase());
+          const scrollPosition = window.scrollY + 100;
+          for (let section of sections) {
+            const element = document.getElementById(section);
+            if (element && scrollPosition >= element.offsetTop && scrollPosition < element.offsetTop + element.offsetHeight) {
+              this.currentSection = section;
+              break;
+            }
+          }
+        }
+      },
+      mounted() {
+        window.addEventListener('scroll', this.updateCurrentSection);
+        const stars = document.querySelectorAll('.star');
+        stars.forEach(star => {
+          star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        });
+      },
+      beforeUnmount() {
+        window.removeEventListener('scroll', this.updateCurrentSection);
+      }
+    }).mount('#app');
+  </script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
