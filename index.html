@@ -8,8 +8,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Vue.js CDN -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <!-- Font Awesome for Icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     /* Futuristic Base with Sci-Fi Aesthetic */
     body {
@@ -284,15 +282,16 @@
 
     /* Contact Section Specific Styles */
     .contact-icon {
-      transition: transform 0.3s ease, color 0.3s ease;
-      color: #00ffff;
-      font-size: 2rem;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      filter: hue-rotate(180deg); /* Cyan hue to match theme */
+      width: 2rem;
+      height: 2rem;
       padding: 0.5rem;
     }
     .contact-icon:hover {
       transform: scale(1.2);
-      color: #00ff00;
-      text-shadow: 0 0 5px #00ff00;
+      filter: hue-rotate(90deg); /* Green hue on hover */
+      box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
     }
     .map-iframe {
       border-radius: 1rem;
@@ -303,6 +302,11 @@
     @media (max-width: 640px) {
       .map-iframe {
         height: 200px;
+      }
+      .contact-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 0.3rem;
       }
     }
 
@@ -356,10 +360,6 @@
       #contact input, #contact textarea, #contact button {
         border-radius: 0.75rem;
         padding: 0.75rem;
-      }
-      .contact-icon {
-        font-size: 1.5rem;
-        padding: 0.3rem;
       }
     }
   </style>
@@ -419,7 +419,7 @@
     </section>
 
     <!-- Projects Section -->
-    < MALICIOUS CONTENT DETECTED >section id="projects" class="py-12 sm:py-16">
+    <section id="projects" class="py-12 sm:py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-8">AI Projects</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -479,16 +479,16 @@
               <!-- Social Links and CV Download -->
               <div class="mt-6 flex flex-wrap justify-center gap-4 sm:gap-6">
                 <a href="https://www.linkedin.com/in/taimur-afzal-561" target="_blank" class="contact-icon">
-                  <i class="fab fa-linkedin-in"></i>
+                  <img src="https://e7.pngegg.com/pngimages/524/809/png-clipart-computer-icons-resume-linkedin-logo-job-hunting-others-blue-angle-thumbnail.png" alt="LinkedIn" class="w-full h-full object-contain">
                 </a>
                 <a href="https://github.com/taimoor561" target="_blank" class="contact-icon">
-                  <i class="fab fa-github"></i>
+                  <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="w-full h-full object-contain">
                 </a>
                 <a href="https://wa.me/+923099140091" target="_blank" class="contact-icon">
-                  <i class="fab fa-whatsapp"></i>
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4u0kKbESCa0wDS6jXlUhWlKehtK3yJdsF9g&s" alt="WhatsApp" class="w-full h-full object-contain">
                 </a>
                 <a href="mailto:taimoorafzal130@gmail.com" class="contact-icon">
-                  <i class="fas fa-envelope"></i>
+                  <img src="https://cdn-icons-png.flaticon.com/512/646/646094.png" alt="Email" class="w-full h-full object-contain">
                 </a>
                 <a href="https://github.com/Taimoor561/taimoor561.github.io/raw/1c4664a3b4691fe991311674b478787c791c3ec7/TaimurAfzalprofile2.pdf" download class="inline-block bg-gradient-to-r from-cyan-500 to-green-500 text-white font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:from-cyan-600 hover:to-green-600 transition duration-300 text-sm sm:text-base">Download CV</a>
               </div>
@@ -527,13 +527,13 @@
             {
               title: 'IoT Anti-Theft System',
               description: 'Raspberry Pi-based AI security with 95%+ real-time detection.',
-              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmxSzJkPTumFRhLKUdjiAbmFpV8V2-GnbbDaO65yAls2TEukvowBGvCMpaIC20MwV5Dv0&usqp=CAU',
+              image: 'https://ik.imagekit.io/ffeiduelcib/elasho-d3d/wp-content/uploads/2022/06/SecurityAlarm_3.jpg',
               link: 'https://github.com/taimoor561'
             },
             {
               title: 'AI School Management',
               description: 'Flutter app with REST APIs for seamless 100% uptime operation.',
-              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZOTlXMkrK3-LVlH55MujZi0w0ny7FYpkexw&s',
+              image: 'https://media.licdn.com/dms/image/v2/D4E12AQGBDSVrAPjUpw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1726548143702?e=2147483647&v=beta&t=WL5j2W5VVoMsM7avbWB_dtS7HECAW_ZLN70l_XlCYCs',
               link: '#'
             }
           ],
