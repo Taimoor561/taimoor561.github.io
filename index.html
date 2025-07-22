@@ -8,6 +8,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Vue.js CDN -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- Font Awesome for Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     /* Futuristic Base with Sci-Fi Aesthetic */
     body {
@@ -72,7 +74,7 @@
       border-bottom: 2px solid rgba(0, 255, 255, 0.3);
     }
     nav .logo {
-      font-size: 2.5xl;
+      font-size: 1.5rem sm:text-2xl;
       font-weight: 700;
       color: #00ffff;
       text-shadow: 0 0 10px #00ffff, 0 0 20px rgba(0, 191, 255, 0.5);
@@ -83,9 +85,10 @@
     }
     nav a {
       color: #ffffff;
-      padding: 10px 15px;
-      border-radius: 5px;
+      padding: 8px 12px;
+      border-radius: 8px;
       transition: all 0.3s ease;
+      font-size: 0.9rem sm:text-base;
     }
     nav a:hover {
       background: rgba(0, 255, 255, 0.3);
@@ -99,17 +102,46 @@
       text-shadow: 0 0 5px #00ff00;
     }
 
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+    }
+    @media (max-width: 640px) {
+      .hamburger {
+        display: block;
+        cursor: pointer;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: linear-gradient(90deg, #0a0d2e, #1e3a8a, #00ffff);
+        position: absolute;
+        top: 5rem;
+        left: 0;
+        padding: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 191, 255, 0.3);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links a {
+        margin: 0.5rem 0;
+        text-align: center;
+      }
+    }
+
     /* Enhanced Hero Section */
     #home {
       position: relative;
-      padding: 150px 0;
+      padding: 6rem 0 sm:8rem 0 lg:10rem 0;
       overflow: hidden;
     }
     #home .card {
       background: linear-gradient(135deg, rgba(224, 247, 250, 0.95), rgba(178, 235, 242, 0.95));
-      padding: 50px;
-      border-radius: 25px;
-      box-shadow: 0 25px 60px rgba(0, 191, 255, 0.3), 0 0 40px rgba(255, 0, 255, 0.2);
+      padding: 2rem sm:3rem lg:4rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.2);
       animation: float 4s ease-in-out infinite;
       text-align: center;
       position: relative;
@@ -117,48 +149,48 @@
     }
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+      50% { transform: translateY(-10px); }
     }
     #home h2 {
-      font-size: 5rem;
+      font-size: 2.5rem sm:3.5rem md:5rem;
       font-weight: 900;
       color: #1a202c;
-      text-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 191, 255, 0.4);
+      text-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 191, 255, 0.4);
       animation: neonPulse 3s infinite alternate;
-      margin-bottom: 20px;
+      margin-bottom: 1rem;
     }
     @keyframes neonPulse {
-      0% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 191, 255, 0.4); }
-      100% { text-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 60px rgba(0, 191, 255, 0.6); }
+      0% { text-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 191, 255, 0.4); }
+      100% { text-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 50px rgba(0, 191, 255, 0.6); }
     }
     #home p {
-      font-size: 2.5rem;
+      font-size: 1.25rem sm:1.75rem md:2.5rem;
       color: #2d3748;
-      margin-bottom: 30px;
+      margin-bottom: 1.5rem;
       text-shadow: 0 0 5px rgba(0, 191, 255, 0.2);
     }
     #home a {
-      padding: 15px 30px;
-      font-size: 1.5rem;
+      padding: 0.75rem 1.5rem sm:1rem 2rem;
+      font-size: 1rem sm:1.25rem;
       background: linear-gradient(90deg, #00ffff, #00ff00);
-      border: 3px solid rgba(0, 255, 255, 0.6);
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+      border: 2px solid rgba(0, 255, 255, 0.6);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
       color: #ffffff;
-      border-radius: 50px;
+      border-radius: 2rem;
       transition: all 0.4s ease;
     }
     #home a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
       background: linear-gradient(90deg, #00ccff, #00cc00);
     }
 
     /* Card Styles with Colors and Click Border */
     .card {
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(230, 230, 230, 0.95));
-      border-radius: 15px;
+      border-radius: 1rem;
       border: 1px solid transparent;
-      box-shadow: 0 10px 30px rgba(0, 191, 255, 0.1), 0 0 20px rgba(255, 0, 255, 0.05);
+      box-shadow: 0 5px 15px rgba(0, 191, 255, 0.1), 0 0 10px rgba(255, 0, 255, 0.05);
       transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.3s ease;
       overflow: hidden;
       position: relative;
@@ -180,18 +212,18 @@
     }
     .card.clicked {
       border: 2px solid #00ffff;
-      box-shadow: 0 0 15px #00ffff, 0 0 30px rgba(0, 191, 255, 0.3);
+      box-shadow: 0 0 10px #00ffff, 0 0 20px rgba(0, 191, 255, 0.3);
     }
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 50px rgba(0, 191, 255, 0.2), 0 0 30px rgba(255, 0, 255, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 191, 255, 0.2), 0 0 20px rgba(255, 0, 255, 0.1);
     }
 
     /* Section-specific Card Colors */
     #about .card { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
     #projects .card { background: linear-gradient(135deg, #e1f5fe, #b3e5fc); }
     #skills .card { background: linear-gradient(135deg, #f3e5f5, #e1bee7); }
-    #contact .card { background: linear-gradient(135deg, #fffde7, #fff9c4); }
+    #contact .card { background: linear-gradient(135deg, #e0f7fa, #b2ebf2); }
 
     /* Project Card Hover */
     .project-card:hover {
@@ -203,6 +235,7 @@
     .project-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       animation: pulse 4s infinite alternate;
+      border-radius: 1rem;
     }
     @keyframes pulse {
       0% { box-shadow: 0 5px 15px rgba(0, 191, 255, 0.1); }
@@ -210,25 +243,27 @@
       100% { box-shadow: 0 5px 15px rgba(0, 191, 255, 0.1); }
     }
     .project-card:nth-child(1) {
-      background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* Light cyan */
+      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
       animation-delay: 0s;
     }
     .project-card:nth-child(2) {
-      background: linear-gradient(135deg, #e8f5e9, #c8e6c9); /* Light green */
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
       animation-delay: 0.5s;
     }
     .project-card:nth-child(3) {
-      background: linear-gradient(135deg, #f3e5f5, #e1bee7); /* Light purple */
+      background: linear-gradient(135deg, #f3e5f5, #e1bee7);
       animation-delay: 1s;
     }
     .project-card:hover {
-      transform: scale(1.05) rotate(2deg);
+      transform: scale(1.05) rotate(1deg);
     }
     .project-card img {
       transition: transform 0.3s ease;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
     }
     .project-card:hover img {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     /* Tech Badge Animation */
@@ -236,27 +271,96 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       background: rgba(0, 255, 0, 0.1);
       border: 1px solid rgba(0, 255, 0, 0.3);
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem sm:0.875rem;
     }
     .tech-badge:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
       color: #00ff00;
       text-shadow: 0 0 3px #00ff00;
     }
 
+    /* Contact Section Specific Styles */
+    .contact-icon {
+      transition: transform 0.3s ease, color 0.3s ease;
+      color: #00ffff;
+      font-size: 2rem;
+      padding: 0.5rem;
+    }
+    .contact-icon:hover {
+      transform: scale(1.2);
+      color: #00ff00;
+      text-shadow: 0 0 5px #00ff00;
+    }
+    .map-iframe {
+      border-radius: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 191, 255, 0.2);
+      width: 100%;
+      height: 300px;
+    }
+    @media (max-width: 640px) {
+      .map-iframe {
+        height: 200px;
+      }
+    }
+
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
     ::-webkit-scrollbar-track {
       background: #f1f1f1;
     }
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(to bottom, #00ffff, #00ff00);
-      border-radius: 4px;
+      border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(to bottom, #00ccff, #00cc00);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+      .holo-overlay, .circuit {
+        opacity: 0.3;
+      }
+      #about .flex {
+        flex-direction: column;
+        align-items: center;
+      }
+      #about img {
+        width: 12rem;
+        height: 12rem;
+        border-radius: 1.5rem;
+      }
+      #projects .grid {
+        grid-template-columns: 1fr;
+      }
+      #projects img {
+        height: 10rem;
+      }
+      #skills .flex {
+        gap: 0.5rem;
+      }
+      #contact .contact-container {
+        flex-direction: column;
+      }
+      #contact .map-iframe {
+        margin-bottom: 1rem;
+      }
+      #contact .card {
+        padding: 1rem;
+      }
+      #contact input, #contact textarea, #contact button {
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+      }
+      .contact-icon {
+        font-size: 1.5rem;
+        padding: 0.3rem;
+      }
     }
   </style>
 </head>
@@ -265,13 +369,18 @@
     <!-- Enhanced Header -->
     <nav class="shadow-md sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20 items-center">
+        <div class="flex justify-between h-16 sm:h-20 items-center">
           <div class="flex items-center">
-            <h1 class="logo text-3xl font-bold transition duration-300">{{ name }}</h1>
+            <h1 class="logo transition duration-300">{{ name }}</h1>
           </div>
-          <div class="flex items-center space-x-6">
+          <div class="hamburger sm:hidden" @click="toggleMenu">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </div>
+          <div class="nav-links sm:flex sm:items-center sm:space-x-4 sm:space-x-6" :class="{ 'active': menuOpen }">
             <a v-for="section in sections" :href="'#' + section.toLowerCase()" 
-               class="text-white hover:text-cyan-300 px-4 py-2 rounded-md text-base font-medium transition duration-300"
+               class="text-white hover:text-cyan-300 px-3 py-2 rounded-md text-base font-medium transition duration-300"
                :class="{ 'active': currentSection === section.toLowerCase() }">
               {{ section }}
             </a>
@@ -285,41 +394,41 @@
       <div class="holo-overlay"></div>
       <div class="circuit"></div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="card p-8 max-w-5xl mx-auto" @click="toggleClick('homeCard')">
-          <h2 class="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 tracking-wide leading-tight">Enter the AI Realm, I am {{ name }}</h2>
-          <p class="text-2xl md:text-4xl text-gray-700 mb-10">{{ profession }}</p>
-          <a href="#contact" class="inline-block bg-gradient-to-r from-cyan-500 to-green-500 text-white font-bold px-12 py-6 rounded-full hover:from-cyan-600 hover:to-green-600 transition duration-300 text-2xl">Unleash the Future</a>
+        <div class="card p-6 sm:p-8 max-w-5xl mx-auto" @click="toggleClick('homeCard')">
+          <h2 class="text-3xl sm:text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 tracking-wide leading-tight">Enter the AI Realm, I am {{ name }}</h2>
+          <p class="text-xl sm:text-2xl md:text-4xl text-gray-700 mb-6 sm:mb-10">{{ profession }}</p>
+          <a href="#contact" class="inline-block bg-gradient-to-r from-cyan-500 to-green-500 text-white font-bold px-8 sm:px-12 py-3 sm:py-4 rounded-full hover:from-cyan-600 hover:to-green-600 transition duration-300 text-lg sm:text-xl">Unleash the Future</a>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16">
+    <section id="about" class="py-12 sm:py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center text-gray-900 mb-8">About Me</h2>
-        <div class="flex flex-col md:flex-row items-center gap-8">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-8">About Me</h2>
+        <div class="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
           <div class="relative">
-            <img src="https://via.placeholder.com/300" alt="Profile" class="w-64 h-64 rounded-full object-cover shadow-lg border-4 border-cyan-500/30">
-            <div class="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 to-green-500/20 rounded-full blur-lg"></div>
+            <img src="https://avatars.githubusercontent.com/u/157741563?s=400&u=effbcc5f5bc1c547a23ecbbef1d764b2f8ad00cd&v=4" alt="Profile" class="w-48 h-48 sm:w-64 sm:h-64 rounded-3xl object-cover shadow-lg border-4 border-cyan-500/30">
+            <div class="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 to-green-500/20 rounded-3xl blur-lg"></div>
           </div>
-          <div class="card p-6 max-w-prose" @click="toggleClick('aboutCard')">
-            <p class="text-lg text-gray-700 leading-relaxed">{{ about }}</p>
+          <div class="card p-4 sm:p-6 max-w-prose" @click="toggleClick('aboutCard')">
+            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">{{ about }}</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16">
+    < MALICIOUS CONTENT DETECTED >section id="projects" class="py-12 sm:py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center text-gray-900 mb-8">AI Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-8">AI Projects</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <div v-for="project in projects" class="project-card bg-white/90 rounded-lg overflow-hidden relative">
-            <img :src="project.image" :alt="project.title" class="w-full h-48 object-cover">
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ project.title }}</h3>
-              <p class="text-gray-600 mb-4">{{ project.description }}</p>
-              <a :href="project.link" target="_blank" class="text-cyan-600 hover:text-cyan-500 font-medium">Explore Project</a>
+            <img :src="project.image" :alt="project.title" class="w-full h-32 sm:h-48 object-cover">
+            <div class="p-4 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-2">{{ project.title }}</h3>
+              <p class="text-sm sm:text-base text-gray-600 mb-4">{{ project.description }}</p>
+              <a :href="project.link" target="_blank" class="text-cyan-600 hover:text-cyan-500 font-medium text-sm sm:text-base">Explore Project</a>
             </div>
             <div class="absolute top-2 right-2 bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded-full">AI-Powered</div>
           </div>
@@ -328,36 +437,62 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-16">
+    <section id="skills" class="py-12 sm:py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center text-gray-900 mb-8">Tech Expertise</h2>
-        <div class="card p-6" @click="toggleClick('skillsCard')">
-          <div class="flex flex-wrap justify-center gap-4">
-            <span v-for="skill in skills" class="tech-badge text-sm font-semibold px-4 py-2 rounded-full shadow-md">{{ skill }}</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-8">Tech Expertise</h2>
+        <div class="card p-4 sm:p-6" @click="toggleClick('skillsCard')">
+          <div class="flex flex-wrap justify-center gap-2 sm:gap-4">
+            <span v-for="skill in skills" class="tech-badge text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-md">{{ skill }}</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16">
+    <section id="contact" class="py-12 sm:py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center text-gray-900 mb-8">Contact Me</h2>
-        <div class="max-w-lg mx-auto">
-          <div class="card p-6" @click="toggleClick('contactCard')">
-            <div class="mb-4">
-              <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
-              <input v-model="form.name" type="text" id="name" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-8">Contact Me</h2>
+        <div class="card p-4 sm:p-6" @click="toggleClick('contactCard')">
+          <div class="contact-container grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            <!-- Map Section -->
+            <div>
+              <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">Find Me Here</h3>
+              <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3402.343667184271!2d74.25501331513876!3d31.480255981384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391903f08a3c6b7b%3A0x47c6c2a1d4e4c7d5!2sJohar%20Town%2C%20Lahore%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1698765432109!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+              <p class="text-base sm:text-lg text-gray-700 mt-4">G4 Johar Town, Lahore, Punjab, Pakistan</p>
             </div>
-            <div class="mb-4">
-              <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-              <input v-model="form.email" type="email" id="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900">
+            <!-- Form and Social Links -->
+            <div>
+              <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">Get in Touch</h3>
+              <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
+                <input v-model="form.name" type="text" id="name" class="mt-1 block w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900">
+              </div>
+              <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                <input v-model="form.email" type="email" id="email" class="mt-1 block w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900">
+              </div>
+              <div class="mb-4">
+                <label for="message" class="block text-sm font-medium text-gray-600">Message</label>
+                <textarea v-model="form.message" id="message" rows="4" class="mt-1 block w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900"></textarea>
+              </div>
+              <button @click="submitForm" class="w-full bg-gradient-to-r from-cyan-500 to-green-500 text-white font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:from-cyan-600 hover:to-green-600 transition duration-300">Send Message</button>
+              <!-- Social Links and CV Download -->
+              <div class="mt-6 flex flex-wrap justify-center gap-4 sm:gap-6">
+                <a href="https://www.linkedin.com/in/taimur-afzal-561" target="_blank" class="contact-icon">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/taimoor561" target="_blank" class="contact-icon">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://wa.me/+923099140091" target="_blank" class="contact-icon">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:taimoorafzal130@gmail.com" class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://github.com/Taimoor561/taimoor561.github.io/raw/1c4664a3b4691fe991311674b478787c791c3ec7/TaimurAfzalprofile2.pdf" download class="inline-block bg-gradient-to-r from-cyan-500 to-green-500 text-white font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:from-cyan-600 hover:to-green-600 transition duration-300 text-sm sm:text-base">Download CV</a>
+              </div>
             </div>
-            <div class="mb-4">
-              <label for="message" class="block text-sm font-medium text-gray-600">Message</label>
-              <textarea v-model="form.message" id="message" rows="4" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900"></textarea>
-            </div>
-            <button @click="submitForm" class="w-full bg-gradient-to-r from-cyan-500 to-green-500 text-white font-bold px-6 py-3 rounded-md hover:from-cyan-600 hover:to-green-600 transition duration-300">Send Message</button>
           </div>
         </div>
       </div>
@@ -386,19 +521,19 @@
             {
               title: 'Smart Vehicle Access System',
               description: 'AI-powered mobile app with 98% facial recognition accuracy using Firebase.',
-              image: 'https://via.placeholder.com/400x300',
+              image: 'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*IyIZ0mGOadULZnxxZ38k2A.png',
               link: 'https://github.com/taimoor561'
             },
             {
               title: 'IoT Anti-Theft System',
               description: 'Raspberry Pi-based AI security with 95%+ real-time detection.',
-              image: 'https://via.placeholder.com/400x300',
+              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmxSzJkPTumFRhLKUdjiAbmFpV8V2-GnbbDaO65yAls2TEukvowBGvCMpaIC20MwV5Dv0&usqp=CAU',
               link: 'https://github.com/taimoor561'
             },
             {
               title: 'AI School Management',
               description: 'Flutter app with REST APIs for seamless 100% uptime operation.',
-              image: 'https://via.placeholder.com/400x300',
+              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZOTlXMkrK3-LVlH55MujZi0w0ny7FYpkexw&s',
               link: '#'
             }
           ],
@@ -413,7 +548,8 @@
             aboutCard: false,
             skillsCard: false,
             contactCard: false
-          }
+          },
+          menuOpen: false
         };
       },
       methods: {
@@ -439,6 +575,9 @@
           Object.keys(this.clickedCards).forEach(key => {
             if (key !== cardId) this.clickedCards[key] = false;
           });
+        },
+        toggleMenu() {
+          this.menuOpen = !this.menuOpen;
         }
       },
       mounted() {
@@ -449,6 +588,5 @@
       }
     }).mount('#app');
   </script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
