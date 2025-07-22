@@ -315,7 +315,7 @@
         <h2 class="text-4xl font-bold text-center text-gray-900 mb-8">AI Projects</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div v-for="project in projects" class="project-card bg-white/90 rounded-lg overflow-hidden relative">
-            <img :src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*IyIZ0mGOadULZnxxZ38k2A.png" :alt="project.title" class="w-full h-48 object-cover">
+            <img :src="project.png" :alt="project.title" class="w-full h-48 object-cover">
             <div class="p-6">
               <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ project.title }}</h3>
               <p class="text-gray-600 mb-4">{{ project.description }}</p>
